@@ -5,28 +5,38 @@ const WANT: i32 = 2020;
 
 pub fn run() {
     let input = read_to_string("src/day1-input.txt").unwrap();
-    let numbers = input.split("\n").map(|x| x.parse()).filter_map(Result::ok);
+    let numbers: HashSet<_> = input
+        .lines()
+        .map(|x| x.parse())
+        .filter_map(Result::ok)
+        .map(|x| x)
+        .collect();
 
-    let mut visited = HashSet::new();
-    for n in numbers {
-        let complement = WANT - n;
-        if visited.contains(&complement) {
-            let result = n * complement;
-            assert_eq!(866436, result);
-            println!("first part: {}", result);
+    let result = numbers.iter().fold(0, |acc, x| {
+        let complement = WANT - x;
+        if numbers.contains(&complement) {
+            x * complement
+        } else {
+            acc
         }
-        visited.insert(n);
-    }
+    });
+    assert_eq!(866436, result);
+    println!("{}", result);
 
-    for n1 in &visited {
-        for n2 in &visited {
+    let result = numbers.iter().fold(0, |acc, n1| {
+        let result_inner = numbers.iter().fold(0, |acc_inner, n2| {
             let complement = WANT - n1 - n2;
-            if visited.contains(&complement) {
-                let result = n1 * n2 * complement;
-                assert_eq!(276650720, result);
-                println!("second part: {}", result);
-                return;
+            if numbers.contains(&complement) {
+                n1 * n2 * complement
+            } else {
+                acc_inner
             }
+        });
+        if result_inner > 0 {
+            result_inner
+        } else {
+            acc
         }
-    }
+    });
+    println!("{}", result);
 }
