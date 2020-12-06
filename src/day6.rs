@@ -1,22 +1,16 @@
 use std::collections::HashMap;
 use std::collections::HashSet;
 use std::fs::read_to_string;
+use std::iter::FromIterator;
 
 pub fn run() {
     let input = read_to_string("src/day6-input.txt").unwrap();
     let groups: Vec<_> = input.split("\n\n").collect();
 
     let result = groups.iter().fold(0, |acc, x| {
-        acc + x
-            .split_whitespace()
-            .collect::<String>()
-            .chars()
-            .fold(HashSet::new(), |mut acc_inner, y| {
-                acc_inner.insert(y);
-                acc_inner
-            })
-            .iter()
-            .count()
+        let unique: HashSet<_> =
+            HashSet::from_iter(x.split_whitespace().collect::<String>().chars());
+        acc + unique.len()
     });
     assert_eq!(6387, result);
     println!("{}", result);
