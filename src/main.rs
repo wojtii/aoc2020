@@ -1,26 +1,16 @@
-mod day1;
-mod day2;
-mod day3;
-mod day4;
-mod day5;
-mod day6;
+// mod day1;
+// mod day2;
+// mod day3;
+// mod day4;
+// mod day5;
+// mod day6;
+// mod day7;
+// mod day8;
+// mod day9;
+// mod day10;
+// mod day11;
+mod day12;
 
 fn main() {
-    println!("first day");
-    day1::run();
-
-    println!("\nsecond day");
-    day2::run();
-
-    println!("\nthird day");
-    day3::run();
-
-    println!("\nfourth day");
-    day4::run();
-
-    println!("\nfifth day");
-    day5::run();
-
-    println!("\nsixth day");
-    day6::run();
+    day12::run();
 }
