@@ -36,5 +36,5 @@ pub fn run() {
             }
         });
     assert_eq!(552612234243498, result);
-    println!("{}", result)
+    println!("{}", result);
 }
