@@ -1,11 +1,11 @@
 use std::collections::HashSet;
 use std::fs::read_to_string;
-use std::ops::Range;
+use std::ops::RangeInclusive;
 
 #[derive(Debug)]
 struct Rule {
     name: String,
-    ranges: (Range<u32>, Range<u32>),
+    ranges: (RangeInclusive<u32>, RangeInclusive<u32>),
 }
 
 impl Rule {
@@ -27,7 +27,7 @@ pub fn run() {
                 .map(|y| {
                     let lower_upper: Vec<u32> =
                         y.trim().split("-").map(|z| z.parse().unwrap()).collect();
-                    lower_upper[0]..lower_upper[1] + 1
+                    lower_upper[0]..=lower_upper[1]
                 })
                 .collect();
 
