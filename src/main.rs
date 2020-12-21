@@ -16,8 +16,10 @@
 // mod day16;
 // mod day17;
 // mod day18;
-mod day19;
+// mod day19;
+// mod day20;
+mod day21;
 
 fn main() {
-    day19::run();
+    day21::run();
 }
